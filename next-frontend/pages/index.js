@@ -108,8 +108,8 @@ export default function Home({ blogs }) {
 
               <li className="group pl-6">
 
-                <span
-                  className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">About</span>
+                <a href='#about'><span
+                  className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">About</span></a>
 
                 <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
               </li>
@@ -124,40 +124,40 @@ export default function Home({ blogs }) {
 
               <li className="group pl-6">
 
-                <span
-                  className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">Portfolio</span>
+              <a href='#portfolio'><span
+                  className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">Portfolio</span></a>
 
                 <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
               </li>
 
               <li className="group pl-6">
 
-                <span
-                  className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">Clients</span>
+              <a href='#clients'><span
+                  className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">Clients</span></a>
 
                 <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
               </li>
 
               <li className="group pl-6">
 
-                <span
-                  className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">Work</span>
+              <a href='#work'><span
+                  className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">Work</span></a>
 
                 <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
               </li>
 
               <li className="group pl-6">
 
-                <span
-                  className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">Statistics</span>
+              <a href='#statistics'><span
+                  className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">Statistics</span></a>
 
                 <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
               </li>
 
               <li className="group pl-6">
 
-                <span
-                  className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">Blog</span>
+              <a href='#blog'><span
+                  className="cursor-pointer pt-0.5 font-header font-semibold uppercase text-white">Blog</span></a>
 
                 <span className="block h-0.5 w-full bg-transparent group-hover:bg-yellow"></span>
               </li>
