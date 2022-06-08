@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { createClient } from "next-sanity";
-import PortableText from "react-portable-text"
+
 import Script from "next/script"
 import { useEffect } from 'react';
 import imageUrlBuilder from '@sanity/image-url'
@@ -944,7 +944,7 @@ export async function getServerSideProps(context) {
     dataset: "production",
     useCdn: false
   });
-  const query = `*[_type == "blog"]`;
+  const query = `*[_type == "blog"][0...3]`;
   const blogs = await client.fetch(query);
   console.log(blogs.length)
   return {
