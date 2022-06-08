@@ -4,8 +4,23 @@ import styles from '../styles/Home.module.css'
 import { createClient } from "next-sanity";
 import PortableText from "react-portable-text"
 import Script from "next/script"
+import { useEffect } from 'react';
+import imageUrlBuilder from '@sanity/image-url'
+import Link from 'next/link'
 
 export default function Home({ blogs }) {
+  const client = createClient({
+    projectId: "iytovi01",
+    dataset: "production",
+    useCdn: false
+  });
+  const builder = imageUrlBuilder(client)
+  
+  useEffect(() => {
+    console.log("thsnks") 
+    
+  }, [])
+  
   return (
     <><>
       <Script src="/assets/js/main.js"></Script>
@@ -731,24 +746,24 @@ export default function Home({ blogs }) {
             Check out my latest posts!
           </h4>
           <div className="mx-auto grid w-full grid-cols-1 gap-6 pt-12 sm:w-3/4 lg:w-full lg:grid-cols-3 xl:gap-10">
-            <a href="/post" className="shadow">
-              <div style={{"backgroundImage": "url(/assets/img/post-01.png)"}}
+
+            {blogs.map((item) => { 
+              return <Link key={item.slug.current} href={"/blog/" + item.slug.current} className="shadow">
+              <div><div style={{"backgroundImage": `url(${builder.image(item.blogimage).width(200).url() || '/assets/img/post-01.png'})`}}
                 className="group relative h-72 bg-cover bg-center bg-no-repeat sm:h-84 lg:h-64 xl:h-72">
                 <span
                   className="absolute inset-0 block bg-gradient-to-b from-blog-gradient-from to-blog-gradient-to bg-cover bg-center bg-no-repeat opacity-10 transition-opacity group-hover:opacity-50"></span>
                 <span
-                  className="absolute right-0 bottom-0 mr-4 mb-4 block rounded-full border-2 border-white px-6 py-2 text-center font-body text-sm font-bold uppercase text-white md:text-base">Read
+                  className="absolute right-0 bottom-0 mr-4 mb-4 block rounded-full border-2 border-white px-6 py-2 text-center font-body text-sm font-bold uppercase text-white md:text-base cursor-pointer">Read
                   More</span>
               </div>
               <div className="bg-white py-6 px-5 xl:py-8">
-                <span className="block font-body text-lg font-semibold text-black">How to become a frontend
-                  developer</span>
-                <span className="block pt-2 font-body text-grey-20">Lorem ipsum dolor sit amet, consectetur adipiscing
-                  elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-              </div>
-            </a>
-            <a href="/post" className="shadow">
+                <span className="block font-body text-lg font-semibold text-black"> {item.title}</span>
+                <span className="block pt-2 font-body text-grey-20">{item.metadesc}</span>
+              </div></div>
+            </Link>
+             })}
+            {/* <a href="/post" className="shadow">
               <div style={{"backgroundImage": "url(/assets/img/post-02.png)"}}
                 className="group relative h-72 bg-cover bg-center bg-no-repeat sm:h-84 lg:h-64 xl:h-72">
                 <span
@@ -779,7 +794,7 @@ export default function Home({ blogs }) {
                   elit, sed do
                   eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
               </div>
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
@@ -931,6 +946,7 @@ export async function getServerSideProps(context) {
   });
   const query = `*[_type == "blog"]`;
   const blogs = await client.fetch(query);
+  console.log(blogs.length)
   return {
     props: {
       blogs
