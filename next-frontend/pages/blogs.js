@@ -10,7 +10,7 @@ import imageUrlBuilder from '@sanity/image-url'
 import Link from 'next/link'
 import NavBar from '../components/NavBar';
 
-const Blogs = ({blogs}) => {
+const Blogs = ({blogs, profile}) => {
     const client = createClient({
         projectId: "iytovi01",
         dataset: "production",
@@ -24,7 +24,7 @@ const Blogs = ({blogs}) => {
       }, [])
   return (
     <div>
-        <NavBar/>
+        <NavBar profile={profile} />
          <div className="bg-grey-50 my-12" id="blog">
         <div className="container mx-auto py-16 md:py-20">
           <h2 className="text-center font-header text-4xl font-semibold uppercase text-primary sm:text-5xl lg:text-6xl">
@@ -69,11 +69,12 @@ export async function getServerSideProps(context) {
       useCdn: false
     });
     const query = `*[_type == "blog"]`;
-    const blogs = await client.fetch(query);
-    console.log(blogs.length)
+    const blogs = await client.fetch(query); 
+    const profileQuery = `*[_type == "profile"][0]`;
+    const profile = await client.fetch(profileQuery);
     return {
       props: {
-        blogs
+        blogs, profile
       }
     }
   }

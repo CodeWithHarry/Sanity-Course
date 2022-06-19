@@ -7,6 +7,7 @@ import Script from "next/script"
 import { useEffect } from 'react';
 import imageUrlBuilder from '@sanity/image-url'
 import Link from 'next/link'
+import NavBar from '../components/NavBar';
 
 export default function Home({ blogs, profile}) {
   const client = createClient({
@@ -24,10 +25,6 @@ export default function Home({ blogs, profile}) {
   //   instagramLink: "https://instagram.com/codewithharry",
   // }
   
-  useEffect(() => {
-    console.log("thsnks") 
-    
-  }, [])
   
   return (
     <><>
@@ -103,8 +100,9 @@ export default function Home({ blogs, profile}) {
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 
-      </Head>
-      <div className="w-full z-50 top-0 py-3 sm:py-5  absolute ">
+      </Head> 
+      <NavBar profile={profile} />
+      {/* <div className="w-full z-50 top-0 py-3 sm:py-5  absolute ">
         <div className="container flex items-center justify-between">
           <div>
             <a href="/">
@@ -186,7 +184,7 @@ export default function Home({ blogs, profile}) {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
       <div
         className="pointer-events-none fixed inset-0 z-70 min-h-screen bg-black bg-opacity-70 opacity-0 transition-opacity lg:hidden" /> 
       <div className="hidden absolute right-0 min-h-screen w-2/3 bg-primary py-4 px-8 shadow md:w-1/3">
